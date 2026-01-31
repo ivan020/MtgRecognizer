@@ -1,5 +1,6 @@
 import { setLoading, makeRequest } from "./util.js";
 import { populateOutput } from "./frameOutput.js";
+import { compressImage } from "./imageUtils.js";
 
 const MTG_URL = "https://mtgrecognizer.dpdns.org/card_data";
 
@@ -12,8 +13,10 @@ export default async function handleSubmit(event) {
     if (!fileInput.files.length) return;
 
     const file = fileInput.files[0];
+    const compressed = await compressImage(file, 2048, 0.9);
     const formData = new FormData();
-    formData.append("file", file);
+    // formData.append("file", file);
+    formData.append("file", compressed);
 
     try {
         setLoading(true);
