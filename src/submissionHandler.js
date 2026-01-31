@@ -14,6 +14,7 @@ export default async function handleSubmit(event) {
 
     const file = fileInput.files[0];
     const compressed = await compressImage(file, 2048, 0.9);
+    console.log("successfully compressed");
     const formData = new FormData();
     // formData.append("file", file);
     formData.append("file", compressed);
