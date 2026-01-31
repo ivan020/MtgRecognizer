@@ -1,16 +1,31 @@
-export default function handleSubmit(event) {
+import {setLoading, makeRequest} from "./util.js";
+import { populateOutput } from "./frameOutput.js";
+
+const MTG_URL = "http://mtgrecognizer.dpdns.org/card_data";
+
+export default async function handleSubmit(event) {
   event.preventDefault();
 
   const fileInput = document.getElementById("file");
+  const resultEl = document.getElementById("result");
 
   if (!fileInput.files.length) return;
 
   const file = fileInput.files[0];
-  const reader = new FileReader();
+  const formData = new FormData();
+  formData.append("file", file);
 
-  reader.onload = (e) => {
-    console.log("Loaded image:", e.target.result);
-  };
+  try {
+    setLoading(true);
+    resultEl.textContent = "";
 
-  reader.readAsDataURL(file);
+    const apiResponse = await makeRequest(formData, MTG_URL);
+      console.log(apiResponse);
+      populateOutput(resultEl, apiResponse);
+
+  } catch (err) {
+    resultEl.textContent = "Upload failed: " + err.message;
+  } finally {
+    setLoading(false);
+  }
 }

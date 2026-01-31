@@ -94,3 +94,54 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.card-layout {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+
+#cardImage {
+  width: 280px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#cardInfo {
+  flex: 1;
+  font-family: system-ui, sans-serif;
+  line-height: 1.25;   
+  text-align: left
+}
+
+#cardInfo h2 {
+  margin-top: 0;
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+  text-align: center
+}
+
+#cardInfo p {
+  margin: 4px 0;
+  line-height: 1.2;
+}
+
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #ddd;
+  border-top: 5px solid #6b5cff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
