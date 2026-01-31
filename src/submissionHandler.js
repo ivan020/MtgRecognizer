@@ -20,7 +20,6 @@ export default async function handleSubmit(event) {
         resultEl.textContent = "";
 
         const apiResponse = await makeRequest(formData, MTG_URL);
-        console.log(apiResponse);
         populateOutput(resultEl, apiResponse);
 
     } catch (err) {
