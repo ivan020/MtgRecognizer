@@ -1,5 +1,4 @@
 
-const MTG_URL = "http://mtgrecognizer.dpdns.org/card_data";
 
 export function setLoading(isLoading) {
   const loadingEl = document.getElementById("loading");

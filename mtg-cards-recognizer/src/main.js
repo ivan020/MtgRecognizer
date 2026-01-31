@@ -1,21 +1,30 @@
-import './style.css'
+import "./style.css";
 import handleSubmit from "./submissionHandler.js";
+import { createHeader } from "./header.js";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <form id="upload">
-      <label for="file">File to upload</label>
-      <input type="file" id="file" accept="image/*">
-      <button type="submit">Upload</button>
-    </form>
+const app = document.querySelector("#app");
+app.innerHTML = ""; // Clear Vite placeholder
 
-    <div id="loading" class="spinner" style="display:none;"></div>
-    <pre id="result"></pre>
-  </div>
+app.appendChild(createHeader());
+
+// Upload form
+const form = document.createElement("form");
+form.id = "upload";
+form.innerHTML = `
+  <label for="file">File to upload</label>
+  <input type="file" id="file" accept="image/*">
+  <button type="submit">Upload</button>
 `;
+app.appendChild(form);
 
-//grab the form data
-const form = document.querySelector('#upload');
+const spinner = document.createElement("div");
+spinner.id = "loading";
+spinner.className = "spinner";
+spinner.style.display = "none";
+app.appendChild(spinner);
 
-// Register submit handler
+const result = document.createElement("div");
+result.id = "result";
+app.appendChild(result);
+
 form.addEventListener("submit", handleSubmit);
