@@ -2,7 +2,9 @@ import { setLoading, makeRequest } from "./util.js";
 import { populateOutput } from "./frameOutput.js";
 import { compressImage } from "./imageUtils.js";
 
-const MTG_URL = "https://mtgrecognizer.dpdns.org/card_data";
+// const MTG_URL = "https://mtgrecognizer.dpdns.org/card_data";
+// const MTG_URL = "http://localhost:8080/card_data"
+const MTG_URL = "https://mtgrecognitionbackend.onrender.com/card_data"
 
 export default async function handleSubmit(event) {
     event.preventDefault();
@@ -24,6 +26,7 @@ export default async function handleSubmit(event) {
         resultEl.textContent = "";
 
         const apiResponse = await makeRequest(formData, MTG_URL);
+        console.log(apiResponse)
         populateOutput(resultEl, apiResponse);
 
     } catch (err) {
